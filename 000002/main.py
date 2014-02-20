@@ -3,8 +3,8 @@
 import sys
 
 def main():
-  _sum = 0
-  _max = 4000000000
+  _sum = 2
+  _max = 4000000
   fib = [1,2]
 
   while True:

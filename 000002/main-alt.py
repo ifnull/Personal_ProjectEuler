@@ -8,7 +8,7 @@ def fib(p):
 
 def main():
   _sum = 0
-  _max = 4000000000
+  _max = 4000000
   for x in range(0, 100, 3):
     v = fib(x)
     if v >= _max:
