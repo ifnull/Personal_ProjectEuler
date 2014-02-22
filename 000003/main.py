@@ -4,7 +4,7 @@
 import sys, time
 
 # _max = 600851475143
-_max = 1000
+_max = 10000
 _cursor = 2 # start at 2. 1 is a factor of everything
 _sieve = {x: True for x in range( _cursor, _max + 1 )}
 _primes = []
