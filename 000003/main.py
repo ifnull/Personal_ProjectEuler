@@ -1,40 +1,49 @@
 #!/usr/bin/env python
+# Sieve of Eratosthenes
 
-import sys
+import sys, time
 
-num = 10000
-_range = range(0,num)
+# _max = 600851475143
+_max = 1000
+_cursor = 2 # start at 2. 1 is a factor of everything
+_sieve = {x: True for x in range( _cursor, _max + 1 )}
+_primes = []
 
-def sieve(m):
-  for i in range(m, len(_range)):
-    if _range[i] is True:
-      if (i+1) % m is 0 and i+1 is not m:
-        _range[i] = False
+def sift():
+  global _cursor, _max
+  next_found = False
+  cursor = count = 0
+
+  for i in range( _cursor + 1, len(_sieve) + 1 ):
+    if _sieve[i] is True:
+      count += 1
+      mod = i % _cursor
+      if mod is 0:
+        _sieve[i] = False
+      elif mod is not 0 and next_found is False:
+        cursor = i
+        next_found = True
+
+  if cursor is not 0:
+    _cursor = cursor
+
+  if count > 0:
+    return True
+  else:
+    return False
 
 def main():
-  # Sieve of Eratosthenes
-  #num = 600851475143
+  start_time = time.time()
 
-  for i in range(len(_range)):
-    _range[i] = True
+  while sift():
+    pass
 
-  _range[0] = False
+  for i,x in enumerate(_sieve):
+    if _sieve[x] is True:
+      _primes.append(x)
 
-  # sieve(2)
-
-  for i in range(1,num):
-    sieve(i)
-
-  for x in range(len(_range)):
-    if _range[x] is True:
-      print x+1
-
-  # print range(0,50)
-
-  # for i in range(1, num):
-  #   if num % i is 0:
-  #     factors.append(i)
-  # print factors
+  print 'Winner is: ' + str(_primes[-2])
+  print time.time() - start_time, "seconds"
 
 if __name__ == '__main__':
   main()
