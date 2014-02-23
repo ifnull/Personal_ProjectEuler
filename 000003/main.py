@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import sys, math, random, time, decimal
+import math, time
 
 _max = 600851475143
 _winner = 0
