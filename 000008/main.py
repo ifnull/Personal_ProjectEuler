@@ -10,9 +10,13 @@ Options:
 
 from docopt import docopt
 
+adjacent_count = 4
+
 
 def main(args):
     """Main."""
+    global adjacent_count
+
     segments = []
 
     # Get matrix as single string
@@ -27,15 +31,15 @@ def main(args):
     # Sort series
     series = sorted(series, key=len)
 
-    # Get 13 digit segments
+    # Get adjacent_count digit segments
     for i in series:
-        if len(i) is 13:
+        if len(i) is adjacent_count:
             segments.append(i)
         else:
-            last_start_pos = len(i) - 12
-            segments.append(i[0:13])
+            last_start_pos = len(i) - (adjacent_count - 1)
+            segments.append(i[0:adjacent_count])
             for x in xrange(1, last_start_pos):
-                segments.append(i[x:x + 13])
+                segments.append(i[x:x + adjacent_count])
 
     greatest = max(segments, key=get_product)
     greatest_product = get_product(greatest)
@@ -51,8 +55,9 @@ def get_product(e):
 
 
 def filter_short_items(e):
-    """Remove items shorter than 13."""
-    return len(e) >= 13
+    """Remove items shorter than adjacent_count."""
+    global adjacent_count
+    return len(e) >= adjacent_count
 
 
 def get_series():
