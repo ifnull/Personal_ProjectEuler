@@ -41,6 +41,7 @@ def main(args):
             for x in xrange(1, last_start_pos):
                 segments.append(i[x:x + adjacent_count])
 
+    # Sort and get max
     greatest = max(segments, key=get_product)
     greatest_product = get_product(greatest)
 
